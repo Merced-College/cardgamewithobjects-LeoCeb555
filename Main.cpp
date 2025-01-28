@@ -5,13 +5,50 @@ using namespace std;
 //your job is to fix this object
 class Card { // Keeps a card object
 public:
+
+  // Default constructor
+  Card() : suit("Unknown"), rank("Unknown"), value(0) {}
   //put the constructors and getters and setters here
+  Card(string suit, string rank, int value);
+  
+  // Getters
+  int get_value();
+  string get_suit();
+  string get_rank();
+  
+  //setters
+  void set_value(int v);
+  void set_suit(string s);
+  void set_rank(string r);
+
+  //print card function
+  void print_card();
 
 private:
   //put data variables here, look below to see what data variables you should have
+  string suit;
+  string rank;
+  int value;
 };
 
 //define your getters and setters here
+Card::Card(string suit, string rank, int value) {this->suit = suit; this->rank = rank; this->value = value;}
+
+//getter
+int Card::get_value() {return value;}
+string Card::get_suit() {return suit;}
+string Card::get_rank() {return rank;}
+
+//setter
+void Card::set_value(int v) {value = v;}
+void Card::set_suit(string s) {suit = s;}
+void Card::set_rank(string r) {rank = r;}
+//void Card::print_card();
+
+void Card::print_card(){
+  cout << suit << " " << rank << " " << value << endl;
+  }
+
 
 //the rest of the code is working code - if you define your object above
 const string SUITS[] = {"Hearts", "Diamonds", "Clubs", "Spades"};
@@ -19,7 +56,7 @@ const string RANKS[] = {"2", "3",  "4",    "5",     "6",    "7",  "8",
                         "9", "10", "Jack", "Queen", "King", "Ace"};
 const int VALUES[] = {2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11};
 
-// int DECK[52];
+//int DECK[52];
 Card deck[52];
 int currentCardIndex = 0;
 /*
@@ -38,8 +75,11 @@ void initializeDeck() {
   }
 }
 
+
+
+
 void printDeck() {
-  for (int i = 0; i < 52; i++)
+  for (int i = 0; i < 52; i++) 
     deck[i].print_card();
 }
 
@@ -110,6 +150,6 @@ int main() {
   if (playerTotal > 21) {
     cout << "You busted! Dealer wins." << endl;
     return 0;
-  } 
+  }
   
 }
